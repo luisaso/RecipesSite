@@ -1,0 +1,28 @@
+.container-list {
+  width: 100%;
+  min-width: 600px;
+}
+
+.header-list {
+  display: flex;
+  justify-content: left;
+}
+
+.btn-add-recipe {
+  height: 75%;
+  margin-left: auto;
+}
+
+.recipe-btn {
+  background-color: transparent;
+  border: none;
+  color: black;
+  text-align: justify;
+}
+
+.recipe-btn:hover {
+  background-color: blue;
+  border: none;
+  color: white;
+  text-align: justify;
+}

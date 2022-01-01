@@ -1,0 +1,14 @@
+.container-new {
+  min-width: 600px;
+}
+
+.new-recipe-box {
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: honeydew;
+}
+
+.btn-save-recipe {
+  margin-left: 90%;
+}

@@ -1,0 +1,30 @@
+<div class="container-list">
+  <div class="header-list">
+    <h3>Recipe List</h3>
+    <button class="btn btn-primary btn-add-recipe" (click)="clickNew()">
+      Add Recipe
+    </button>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let recipe of recipes">
+        <th scope="row">{{ recipe.id }}</th>
+        <td>
+          <button
+            class="btn btn-secondary recipe-btn"
+            (click)="clickDetails(recipe.id)"
+          >
+            {{ recipe.name }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
