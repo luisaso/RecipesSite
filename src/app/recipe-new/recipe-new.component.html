@@ -5,29 +5,65 @@
 
   <div class="new-recipe-box">
     <div class="input-group mb-2">
-      <span class="input-group-text" id="basic-addon1">Name</span>
-      <input type="text" class="form-control" placeholder="Recipe name" />
+      <span class="input-group-text" id="recipe-name">Name</span>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Recipe name"
+        [(ngModel)]="recipeName"
+      />
     </div>
 
     <div class="input-group mb-2">
-      <span class="input-group-text" id="basic-addon1">Source</span>
-      <input type="text" class="form-control" placeholder="Recipe Source" />
+      <span class="input-group-text" id="recipe-source">Source</span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Recipe Source"
+        [(ngModel)]="recipeSource"
+      />
     </div>
 
     <div class="input-group mb-2">
-      <span class="input-group-text" id="basic-addon1">Ingredients</span>
-      <textarea type="text" class="form-control" cols="25" rows="5"> </textarea>
+      <span class="input-group-text" id="recipe-ingredients">Ingredients</span>
+      <textarea
+        type="text"
+        class="form-control"
+        cols="25"
+        rows="5"
+        [(ngModel)]="recipeIngredients"
+      >
+      </textarea>
     </div>
 
     <div class="input-group mb-2">
-      <span class="input-group-text" id="basic-addon1">Instructions</span>
-      <textarea type="text" class="form-control" cols="25" rows="5"> </textarea>
+      <span class="input-group-text" id="recipe-instructions"
+        >Instructions</span
+      >
+      <textarea
+        type="text"
+        class="form-control"
+        cols="25"
+        rows="5"
+        [(ngModel)]="recipeInstructions"
+      >
+      </textarea>
     </div>
 
     <div class="input-group mb-2">
-      <span class="input-group-text" id="basic-addon1">Tags</span>
-      <textarea type="text" class="form-control" cols="25" rows="3"> </textarea>
+      <span class="input-group-text" id="recipe-tags">Tags</span>
+      <textarea
+        type="text"
+        class="form-control"
+        cols="25"
+        rows="3"
+        [(ngModel)]="recipeTags"
+      >
+      </textarea>
     </div>
-    <button class="btn btn-primary btn-save-recipe">Save</button>
+    <button class="btn btn-primary btn-save-recipe" (click)="clickSave()">
+      Save
+    </button>
   </div>
 </div>

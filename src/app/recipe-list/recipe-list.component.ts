@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Recipe } from '../recipe-class';
 import { RecipeDetailsComponent } from '../recipe-details/recipe-details.component';
 import { RecipeNewComponent } from '../recipe-new/recipe-new.component';
 import { AppComponent } from '../app.component';
 import { RecipeServiceService } from '../recipe-service.service';
+import { Recipe } from '../recipe-class';
 
 @Component({
   selector: 'app-recipe-list',
@@ -12,10 +12,10 @@ import { RecipeServiceService } from '../recipe-service.service';
 })
 export class RecipeListComponent implements OnInit {
   constructor(private _recipeService: RecipeServiceService) {}
-  public recipes?: any[];
+  public recipes!: Recipe[];
   public addRecipeButton = new AppComponent();
-  public recipeDetails = new RecipeDetailsComponent();
-  public recipeNew = new RecipeNewComponent();
+  public recipeDetails = new RecipeDetailsComponent(this._recipeService);
+  public recipeNew = new RecipeNewComponent(this._recipeService);
 
   @Output() onClickDetails = new EventEmitter<boolean>();
   @Output() onClickNew = new EventEmitter<boolean>();
@@ -25,13 +25,14 @@ export class RecipeListComponent implements OnInit {
   }
 
   clickDetails(recipeId: string) {
+    console.log('DETAIL');
     let dataToShow = this._recipeService.getRecipe(recipeId);
-    this.recipeDetails.showDetails(dataToShow);
     this.onClickDetails.emit(true);
+    this.recipeDetails.showDetails(dataToShow);
   }
 
   clickNew() {
-    console.log('AQUYI');
+    console.log('NEW');
     this.onClickNew.emit(true);
   }
 }

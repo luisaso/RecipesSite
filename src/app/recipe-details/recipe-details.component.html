@@ -12,7 +12,9 @@
     <dd>{{ detailRecipe.source }}</dd>
 
     <dt>Ingredients</dt>
-    <dd>{{ detailRecipe.ingredients }}</dd>
+    <dd *ngFor="let ingredient of detailRecipe.ingredients">
+      {{ ingredient }}
+    </dd>
 
     <dt>Intructions</dt>
     <dd>{{ detailRecipe.instructions }}</dd>
