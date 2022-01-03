@@ -2,24 +2,27 @@
   <div class="header-details">
     <h3>Details</h3>
   </div>
+
   <dl class="dl-horizontal details-box">
-    <div class="id-name">
-      <dt class="recipe-id">{{ detailRecipe.id }} -</dt>
-      <dt class="recipe-name">{{ detailRecipe.name }}</dt>
+    <div class="details-body">
+      <div class="id-name">
+        <dt class="recipe-id">{{ detailRecipe.id }} -</dt>
+        <dt class="recipe-name">{{ detailRecipe.name }}</dt>
+      </div>
+
+      <dt>Source</dt>
+      <dd>{{ detailRecipe.source }}</dd>
+
+      <dt>Ingredients</dt>
+      <dd *ngFor="let ingredient of detailRecipe.ingredients">
+        {{ ingredient }}
+      </dd>
+
+      <dt>Intructions</dt>
+      <dd>{{ detailRecipe.instructions }}</dd>
+
+      <dt>Tags</dt>
+      <dd>{{ detailRecipe.tags }}</dd>
     </div>
-
-    <dt>Source</dt>
-    <dd>{{ detailRecipe.source }}</dd>
-
-    <dt>Ingredients</dt>
-    <dd *ngFor="let ingredient of detailRecipe.ingredients">
-      {{ ingredient }}
-    </dd>
-
-    <dt>Intructions</dt>
-    <dd>{{ detailRecipe.instructions }}</dd>
-
-    <dt>Tags</dt>
-    <dd>{{ detailRecipe.tags }}</dd>
   </dl>
 </div>

@@ -1,5 +1,7 @@
 .container-new {
+  width: 100%;
   min-width: 600px;
+  max-width: 700px;
 }
 
 .new-recipe-box {

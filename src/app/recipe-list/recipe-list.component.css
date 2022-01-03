@@ -3,9 +3,15 @@
   min-width: 600px;
 }
 
+.table-body {
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
 .header-list {
   display: flex;
   justify-content: left;
+  border-bottom: 2px solid rgb(230, 230, 230);
 }
 
 .btn-add-recipe {
