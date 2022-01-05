@@ -13,9 +13,6 @@ import { Recipe } from '../recipe-class';
 export class RecipeListComponent implements OnInit {
   constructor(private _recipeService: RecipeServiceService) {}
   public recipes!: Recipe[];
-  public addRecipeButton = new AppComponent();
-  public recipeDetails = new RecipeDetailsComponent(this._recipeService);
-  public recipeNew = new RecipeNewComponent(this._recipeService);
 
   @Output() onClickDetails = new EventEmitter<boolean>();
   @Output() onClickNew = new EventEmitter<boolean>();
@@ -27,8 +24,8 @@ export class RecipeListComponent implements OnInit {
   clickDetails(recipeId: string) {
     console.log('DETAIL');
     let dataToShow = this._recipeService.getRecipe(recipeId);
+    this._recipeService.changeRecipe(dataToShow);
     this.onClickDetails.emit(true);
-    this.recipeDetails.showDetails(dataToShow);
   }
 
   clickNew() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Recipe } from '../recipe-class';
 import { RecipeServiceService } from '../recipe-service.service';
@@ -8,32 +8,24 @@ import { RecipeServiceService } from '../recipe-service.service';
   templateUrl: './recipe-details.component.html',
   styleUrls: ['./recipe-details.component.css'],
 })
-export class RecipeDetailsComponent implements OnInit {
-  public _detailRecipe = new Recipe();
-  public showRecipeDetails = false;
+export class RecipeDetailsComponent implements OnInit, OnDestroy {
+  public detailRecipe = new Recipe();
 
-  subscription: Subscription = new Subscription();
+  private subscription = new Subscription();
 
   constructor(private _recipeService: RecipeServiceService) {}
 
-  currentRecipe = new Recipe();
-
-  get detailRecipe() {
-    return this._detailRecipe;
+  ngOnInit() {
+    this.subscription;
+    this.subscription = this._recipeService
+      .onRecipeRefresh()
+      .subscribe(
+        (recipe) =>
+          (this.detailRecipe = this._recipeService.getRecipe(recipe.id))
+      );
   }
 
-  set detailRecipe(value: Recipe) {
-    this._detailRecipe = value;
-  }
-
-  ngOnInit(): void {
-    this.subscription = this._recipeService.selectedRecipe$.subscribe(
-      (recipe) => (this.detailRecipe = recipe)
-    );
-  }
-
-  showDetails(recipe: Recipe) {
-    this.showRecipeDetails = true;
-    this._recipeService.changeRecipe(recipe);
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

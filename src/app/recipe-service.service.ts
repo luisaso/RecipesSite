@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import data from 'src/data/recipes.json';
 import { Recipe } from './recipe-class';
 
@@ -9,24 +9,30 @@ export class RecipeServiceService {
 
   private allRecipes: Recipe[] = [new Recipe()];
 
-  private selectedRecipeSource = new ReplaySubject<Recipe>();
-  selectedRecipe$ = this.selectedRecipeSource.asObservable();
+  private selectedRecipeSource = new BehaviorSubject<Recipe>(new Recipe());
+
+  onRecipeRefresh(): Observable<Recipe> {
+    return this.selectedRecipeSource.asObservable();
+  }
 
   changeRecipe(recipe: Recipe) {
     this.selectedRecipeSource.next(recipe);
   }
 
   getAllRecipes() {
-    for (let index = 0; index < data.length; index++) {
+    if (!localStorage.getItem('recipeDatabase')) {
+      localStorage.setItem('recipeDatabase', JSON.stringify(data));
+    }
+    let recipeDatabase = JSON.parse(localStorage.getItem('recipeDatabase')!);
+    for (let index = 0; index < recipeDatabase!.length; index++) {
       let newRecipe: Recipe = new Recipe(
-        data[index].id,
-        data[index].name,
-        data[index].source,
-        data[index].ingredients,
-        data[index].instructions,
-        data[index].tags
+        recipeDatabase[index].id,
+        recipeDatabase[index].name,
+        recipeDatabase[index].source,
+        recipeDatabase[index].ingredients,
+        recipeDatabase[index].instructions,
+        recipeDatabase[index].tags
       );
-
       this.allRecipes[index] = newRecipe;
     }
     return this.allRecipes;
@@ -59,6 +65,7 @@ export class RecipeServiceService {
       tags
     );
     this.allRecipes.push(recipeToAdd);
+    localStorage.setItem('recipeDatabase', JSON.stringify(this.allRecipes));
   }
 
   getRecipe(recipeId: string): Recipe {
