@@ -3,8 +3,8 @@
 </header>
 <div class="container">
   <app-recipe-list
-    (onClickDetails)="switchDetails(true)"
-    (onClickNew)="switchNew(true)"
+    (onClickDetails)="switchDetails($event)"
+    (onClickNew)="switchNew($event)"
   ></app-recipe-list>
   <app-recipe-details *ngIf="isDetails"></app-recipe-details>
   <app-recipe-new *ngIf="isNew"></app-recipe-new>
